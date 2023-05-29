@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <title>Таймер</title>
+    <style>
+        #time-remainer {
+            margin: 50px auto;
+            width: 100%;
+            position: relative;
+            text-align: center;
+            font-size: 50px;
+        }
+
+        #deadline-timer {
+            color: red;
+            font-weight: bold;
+        }
+
+        body {
+            background-color: #DCDCDC;
+        }
+
+        #blockt {
+            margin: 0 auto;
+            border: 1px white solid;
+            width: 80%;
+            background-color: white;
+        }
+
+        #button {
+            margin: 0 auto;
+            display: block;
+            width: 30%;
+            height: 150px;
+            background: #CD5C5C;
+            font-size: 22pt;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="blockt">
+        <div id="time-remainer"> Время удержания <span id="deadline-timer">00:00</span> <span id="min-or-sec"></span>
+    </div>
+    <script>
+        var newWindow;
+        var secundi = 0;
+        var minuti = 0;
+
+        var obratniyOtschet = setInterval(function () {
+            if (secundi < 59) {
+                secundi = secundi + 1;
+                if (minuti == 4) {
+                    if (secundi == 45) {
+                        const newWindow = window.open("", "new window", "_self, width=800, height=400");
+                        newWindow.document.write("<p align='center'><b><font size=6> Осталось 15 секунд (вернитесь пожалуйста к клиенту)<font></b></p>");
+                    }
+                }
+
+            } else {
+                minuti = minuti + 1;
+                secundi = 0;
+            }
+            document.getElementById("deadline-timer").innerHTML = minuti + ":" + secundi;
+        }, 1000);
+
+        function stopSetInterval() {
+
+            clearInterval(obratniyOtschet);
+
+        }
+    </script>
+    <button onclick="stopSetInterval()" type="button" id="button">STOP</button>
+</body>
+
+</html>
