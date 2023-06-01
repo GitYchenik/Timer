@@ -61,37 +61,55 @@
             var newWindow;
             var secundi = 0;
             var minuti = 0;
-            /*
-            var obratniyOtschet = setInterval(function () {
-              
-                if (secundi < 59) {
-                    secundi = secundi + 1;
-                    if (minuti == 4) {
-                        if (secundi == 45) {
-                            const newWindow = window.open("", "new window", "_self, width=800, height=400");
-                            newWindow.document.write("<p align='center'><b><font size=6> Осталось 15 секунд (вернитесь пожалуйста к клиенту)<font></b></p>");
+            let obratniyOtschet;
+
+            function start() {
+                clearInterval(obratniyOtschet);
+                obratniyOtschet = setInterval(function () {
+                    if (minuti >= 0) {
+                        if (secundi > 0) {
+                            secundi = secundi - 1;
+                            if (minuti == 0) {
+                                if (secundi == 15) {
+                                    const newWindow = window.open("", "new window", "_self, width=800, height=400");
+                                    newWindow.document.write("<p align='center'><b><font size=6> Осталось 15 секунд (вернитесь пожалуйста к клиенту)<font></b></p>");
+                                }
+                                if (secundi == 0) {
+                                    clearInterval(obratniyOtschet);
+                                }
+                            }
+
+                        } else {
+                            minuti = minuti - 1;
+                            secundi = 59;
                         }
                     }
+                    document.getElementById("deadline-timer").innerHTML = minuti + ":" + secundi;
+                }, 1000);
+            }
 
-                } else {
-                    minuti = minuti + 1;
-                    secundi = 0;
-                }
-                document.getElementById("deadline-timer").innerHTML = minuti + ":" + secundi;
-            }, 1000);*/
-            function minut5() {
-                alert('dfdf');
+            function ButtonClick2M() {
+                minuti = 1;
+                secundi = 60;
+                start();
+            }
+
+            function ButtonClick5M() {
+                minuti = 4;
+                secundi = 60;
+                start();
             }
 
             function stopSetInterval() {
 
                 clearInterval(obratniyOtschet);
+              /*  document.getElementById("deadline-timer").innerHTML = "00:00";*/
 
             }
         </script>
         <div style="width:100%; text-align: center;">
-            <button onclick="minut5()" type="button" id="minuta2">2 Минуты</button>
-            <button onclick="stopSetInterval()" type="button" id="minuta5">5 минут</button>
+            <button onclick="ButtonClick2M()" type="button" id="minuta2">2 минуты</button>
+            <button onclick="ButtonClick5M()" type="button" id="minuta5">5 минут</button>
             <button onclick="stopSetInterval()" type="button" id="stop">STOP</button>
         </div>
 </body>
