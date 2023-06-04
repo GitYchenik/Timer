@@ -15,7 +15,7 @@
         }
 
         #deadline-timer {
-            color: red;
+            color: black;
             font-weight: bold;
         }
 
@@ -58,9 +58,9 @@
         <div id="time-remainer"> Время удержания <span id="deadline-timer">00:00</span> <span id="min-or-sec"></span>
         </div>
         <script>
-            var newWindow;
-            var secundi = 0;
-            var minuti = 0;
+            let newWindow;
+            let secundi = 0;
+            let minuti = 0;
             let obratniyOtschet;
 
             function start() {
@@ -89,22 +89,23 @@
             }
 
             function ButtonClick2M() {
-                minuti = 1;
-                secundi = 60;
+                document.getElementById("deadline-timer").style.color = "red";
+                minuti = 0;
+                secundi = 25;
                 start();
             }
 
             function ButtonClick5M() {
+                document.getElementById("deadline-timer").style.color = "red";
                 minuti = 4;
                 secundi = 60;
                 start();
             }
 
             function stopSetInterval() {
-
+                document.getElementById("deadline-timer").style.color = "black";
                 clearInterval(obratniyOtschet);
                 document.getElementById("deadline-timer").innerHTML = "00:00";
-
             }
         </script>
         <div style="width:100%; text-align: center;">
